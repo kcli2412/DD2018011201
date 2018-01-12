@@ -33,9 +33,16 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("NET", response);
                         try {
                             JSONArray array = new JSONArray(response);
-                            JSONObject obj = array.getJSONObject(0);
-                            String str = obj.getString("district");
-                            Log.d("NET", str);
+                            for (int i=0; i<array.length(); i++)
+                            {
+                                JSONObject obj1 = array.getJSONObject(i);
+                                StringBuilder sb = new StringBuilder();
+                                sb.append("district: " + obj1.getString("district"));
+                                sb.append(", address: " + obj1.getString("address"));
+                                sb.append(", tel: " + obj1.getString("tel"));
+                                sb.append(", opening_hours: " + obj1.getString("opening_hours"));
+                                Log.d("Object", sb.toString());
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
